@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <title>Entregas de fim de ano | ObentōPet</title>
+<link rel="icon" type="image/png" href="petto-mascote.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -34,7 +35,9 @@
   .hero{position:relative;overflow:hidden;color:#fff;background:linear-gradient(180deg,var(--noite) 0%,var(--amora) 46%,var(--poente) 80%,var(--ouro) 100%)}
   .hero-in{max-width:960px;margin:0 auto;padding:28px 20px 0}
   .marca{font:700 17px var(--display);letter-spacing:.2px;opacity:.95}
-  .marca span{color:var(--ouro)}
+  .marca .marca-txt{display:none}
+  .marca .marca-txt span{color:var(--ouro)}
+  .logo{display:block;height:46px;width:auto;background:#fff;padding:6px 12px;border-radius:12px}
   h1{font:800 clamp(34px,8.4vw,68px)/1.02 var(--display);letter-spacing:-.02em;margin:26px 0 14px;max-width:15ch;text-wrap:balance}
   .hero p.lead{font-size:clamp(17px,3.6vw,21px);max-width:34ch;margin:0 0 22px;color:#fff;text-shadow:0 1px 12px rgba(42,39,102,.5)}
   .cta{display:inline-block;font:700 17px var(--display);background:var(--ouro);color:#3a2300;padding:14px 24px;border-radius:999px;text-decoration:none;box-shadow:0 6px 0 #c9951a}
@@ -51,6 +54,11 @@
   section{margin-top:44px}
   h2{font:800 clamp(25px,5.6vw,34px)/1.1 var(--display);letter-spacing:-.015em;margin:0 0 6px}
   .nota{color:var(--suave);margin:0 0 18px}
+
+  .selo{display:flex;gap:14px;align-items:center;background:#fff;border:2px dashed var(--pinheiro);border-radius:18px;padding:14px 16px;margin-top:28px;font-size:15px}
+  .selo img{flex:none;height:67px;width:auto}
+  .selo p{margin:0}
+  .selo a{color:var(--mar);font-weight:600}
 
   /* calendário */
   .cal{background:#fff;border:2px solid var(--mar);border-radius:22px;padding:14px 12px 12px;box-shadow:6px 6px 0 var(--mar)}
@@ -101,13 +109,13 @@
 
 <header class="hero">
   <div class="hero-in">
-    <div class="marca">Obentō<span>Pet</span></div>
+    <div class="marca"><img class="logo" src="logo-obentopet.png" alt="ObentōPet" onerror="this.style.display='none';document.getElementById('marca-txt').style.display='block'"><span id="marca-txt" class="marca-txt">Obentō<span>Pet</span></span></div>
     <h1>A cozinha vai de férias. As entregas continuam.</h1>
     <p class="lead" id="lead">Conte como prefere receber a comida do seu pet no fim de ano.</p>
     <a class="cta" href="#resposta">Responder agora</a>
   </div>
 
-  <svg class="cena" viewBox="0 0 720 300" role="img" aria-label="Um cachorro e um gato de chapéu de Papai Noel, curtindo a praia ao lado de uma palmeira enfeitada com luzinhas de Natal">
+  <svg class="cena" viewBox="0 0 720 300" role="img" aria-label="Petto, o mascote da ObentōPet, de gorro de Papai Noel na praia, ao lado de presentes e de uma palmeira enfeitada com luzinhas de Natal">
     <!-- sol e mar -->
     <circle cx="360" cy="196" r="74" fill="#FFE08A" opacity=".9"/>
     <rect x="-1500" y="196" width="3720" height="56" fill="#0B3C49"/>
@@ -152,55 +160,18 @@
     </g>
 
     <!-- presentes -->
-    <g>
+    <g transform="translate(70,0)">
       <rect x="318" y="236" width="40" height="32" rx="3" fill="#C8102E"/><rect x="334" y="236" width="8" height="32" fill="#FFC93C"/><rect x="318" y="248" width="40" height="7" fill="#FFC93C"/>
       <path d="M338 236 q-14 -14 -18 -4 q6 8 18 4 M338 236 q14 -14 18 -4 q-6 8 -18 4" fill="none" stroke="#FFC93C" stroke-width="4" stroke-linecap="round"/>
       <rect x="364" y="250" width="26" height="18" rx="3" fill="#1F7A4D"/><rect x="374" y="250" width="6" height="18" fill="#fff"/>
     </g>
 
-    <!-- cachorro -->
-    <g transform="translate(236,0)">
-      <path d="M-36 262 C-60 262 -66 232 -52 226" stroke="#D9A066" stroke-width="12" stroke-linecap="round" fill="none"/>
-      <ellipse cx="0" cy="226" rx="42" ry="40" fill="#D9A066"/>
-      <ellipse cx="0" cy="234" rx="24" ry="28" fill="#F2D3A6"/>
-      <rect x="-27" y="242" width="17" height="26" rx="8.5" fill="#D9A066"/><rect x="10" y="242" width="17" height="26" rx="8.5" fill="#D9A066"/>
-      <ellipse cx="-18.5" cy="267" rx="11" ry="6" fill="#F2D3A6"/><ellipse cx="18.5" cy="267" rx="11" ry="6" fill="#F2D3A6"/>
-      <ellipse cx="-33" cy="176" rx="11" ry="23" fill="#8A5A2B" transform="rotate(14 -33 176)"/>
-      <ellipse cx="33" cy="176" rx="11" ry="23" fill="#8A5A2B" transform="rotate(-14 33 176)"/>
-      <circle cx="0" cy="170" r="36" fill="#D9A066"/>
-      <ellipse cx="0" cy="184" rx="18" ry="14" fill="#F2D3A6"/>
-      <ellipse cx="0" cy="177" rx="6.5" ry="4.5" fill="#2B1B12"/>
-      <path d="M0 181 v5 M-8 188 q8 7 16 0" stroke="#2B1B12" stroke-width="2" stroke-linecap="round" fill="none"/>
-      <ellipse cx="3" cy="193" rx="4.5" ry="5.5" fill="#FF7A8A"/>
-      <circle cx="-13" cy="164" r="4" fill="#2B1B12"/><circle cx="13" cy="164" r="4" fill="#2B1B12"/>
-      <circle cx="-11.8" cy="162.6" r="1.3" fill="#fff"/><circle cx="14.2" cy="162.6" r="1.3" fill="#fff"/>
-      <path d="M-33 150 C-30 110 0 92 30 104 C22 112 30 130 33 150 Z" fill="#C8102E"/>
-      <rect x="-37" y="144" width="74" height="13" rx="6.5" fill="#fff"/>
-      <circle cx="34" cy="106" r="8" fill="#fff"/>
-    </g>
-
-    <!-- gato -->
-    <g transform="translate(442,0)">
-      <path d="M32 262 C76 262 82 212 58 204" stroke="#2E3440" stroke-width="12" stroke-linecap="round" fill="none"/>
-      <ellipse cx="0" cy="226" rx="36" ry="40" fill="#2E3440"/>
-      <ellipse cx="0" cy="236" rx="15" ry="24" fill="#F5F5F5"/>
-      <rect x="-24" y="242" width="15" height="26" rx="7.5" fill="#2E3440"/><rect x="9" y="242" width="15" height="26" rx="7.5" fill="#2E3440"/>
-      <ellipse cx="-16.5" cy="267" rx="10" ry="5.5" fill="#F5F5F5"/><ellipse cx="16.5" cy="267" rx="10" ry="5.5" fill="#F5F5F5"/>
-      <polygon points="-31,162 -27,128 -5,150" fill="#2E3440"/><polygon points="31,162 27,128 5,150" fill="#2E3440"/>
-      <polygon points="-26,154 -24,138 -13,150" fill="#F4A6B7"/><polygon points="26,154 24,138 13,150" fill="#F4A6B7"/>
-      <ellipse cx="0" cy="176" rx="35" ry="30" fill="#2E3440"/>
-      <!-- óculos -->
-      <rect x="-27" y="167" width="23" height="15" rx="6.5" fill="#111" stroke="#FFC93C" stroke-width="2.5"/>
-      <rect x="4" y="167" width="23" height="15" rx="6.5" fill="#111" stroke="#FFC93C" stroke-width="2.5"/>
-      <path d="M-4 172 h8" stroke="#FFC93C" stroke-width="2.5"/>
-      <path d="M-22 171 l7 0 M9 171 l7 0" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".7"/>
-      <path d="M-4 187 h8 l-4 5 z" fill="#F4A6B7"/>
-      <path d="M0 192 q-5 5 -9 2 M0 192 q5 5 9 2" stroke="#F5F5F5" stroke-width="1.8" stroke-linecap="round" fill="none"/>
-      <g stroke="#F5F5F5" stroke-width="1.4" stroke-linecap="round" opacity=".85"><path d="M-20 186 l-22 -4 M-20 190 l-22 4 M20 186 l22 -4 M20 190 l22 4"/></g>
-      <!-- gorro -->
-      <path d="M-19 144 C-17 112 6 100 28 112 C20 118 22 130 19 144 Z" fill="#C8102E"/>
-      <rect x="-23" y="139" width="46" height="11" rx="5.5" fill="#fff"/>
-      <circle cx="29" cy="113" r="7.5" fill="#fff"/>
+    <!-- Petto, mascote da ObentōPet -->
+    <image href="petto-mascote.png" x="238" y="84" width="125" height="190" preserveAspectRatio="xMidYMax meet"/>
+    <g>
+      <path d="M273 92 C274 58 300 44 324 58 C314 64 317 80 317 92 Z" fill="#C8102E"/>
+      <rect x="268" y="87" width="54" height="12" rx="6" fill="#fff"/>
+      <circle cx="325" cy="59" r="8" fill="#fff"/>
     </g>
   </svg>
 </header>
@@ -211,6 +182,11 @@
   <div id="invalido" class="msg-card hide" style="margin-top:36px"><b>Esse link não está mais válido.</b><p style="margin:8px 0 0">Fale com a gente pelo WhatsApp que a gente resolve. 🐾</p></div>
 
   <div id="conteudo" class="hide">
+
+    <aside class="selo" aria-label="Mensagem oficial">
+      <img src="petto-mascote.png" alt="Petto, mascote da ObentōPet" width="44" height="67">
+      <p><b>Mensagem oficial da ObentōPet.</b> Quem enviou este link foi o Petto, nosso assistente virtual, e só tutores cadastrados o recebem. Aqui a gente <b>nunca pede senha, CPF ou dados de cartão</b>. Na dúvida, confira em <a href="https://obentopet.com.br" rel="noopener">obentopet.com.br</a> ou no Instagram <a href="https://instagram.com/obentopet" rel="noopener">@obentopet</a>.</p>
+    </aside>
 
     <section aria-labelledby="t-cal">
       <h2 id="t-cal">O calendário das festas</h2>
@@ -276,7 +252,7 @@
   </div>
 </main>
 
-<footer><b>Boas festas da família ObentōPet</b><br>Um fim de ano gostoso para você e para o(a) <span id="pet-f">seu pet</span>.</footer>
+<footer><b>Boas festas da família ObentōPet</b><span style="display:none"></span><br>Um fim de ano gostoso para você e para o(a) <span id="pet-f">seu pet</span>.</footer>
 
 <script>
 const API = "https://jyrujdfwdwkwynolpbni.supabase.co/functions/v1/yearend-response";
@@ -285,7 +261,7 @@ const $ = (id) => document.getElementById(id);
 const fmt = (iso) => new Date(iso + "T12:00:00").toLocaleDateString("pt-BR", { weekday: "long", day: "2-digit", month: "long" });
 
 /* cena maior no celular */
-(function () { const svg = document.querySelector(".cena"); const mq = matchMedia("(max-width:600px)"); const set = () => svg.setAttribute("viewBox", mq.matches ? "160 60 540 240" : "0 0 720 300"); set(); mq.addEventListener("change", set); })();
+(function () { const svg = document.querySelector(".cena"); const mq = matchMedia("(max-width:600px)"); const set = () => svg.setAttribute("viewBox", mq.matches ? "170 30 540 270" : "0 0 720 300"); set(); mq.addEventListener("change", set); })();
 
 /* calendário: 21/12/2026 (segunda) até 10/01/2027 */
 (function () {
