@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Entregas de fim de ano | ObentōPet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --noite:#2A2766;      /* topo do céu */
+    --amora:#B5446E;      /* meio do pôr do sol */
+    --poente:#FF8A5C;     /* horizonte */
+    --ouro:#FFC93C;       /* luzinhas */
+    --mar:#0B3C49;        /* mar profundo */
+    --gelo:#F2FAF7;       /* fundo do conteúdo */
+    --tinta:#12313A;      /* texto */
+    --suave:#587178;
+    --cereja:#C8102E;     /* natal */
+    --pinheiro:#1F7A4D;
+    --linha:#D5E6E0;
+    --display:"Bricolage Grotesque",system-ui,sans-serif;
+    --corpo:"Figtree",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--gelo);color:var(--tinta);font:17px/1.55 var(--corpo)}
+  .hide{display:none!important}
+  :focus-visible{outline:3px solid var(--ouro);outline-offset:2px}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;overflow:hidden;color:#fff;background:linear-gradient(180deg,var(--noite) 0%,var(--amora) 46%,var(--poente) 80%,var(--ouro) 100%)}
+  .hero-in{max-width:960px;margin:0 auto;padding:28px 20px 0}
+  .marca{font:700 17px var(--display);letter-spacing:.2px;opacity:.95}
+  .marca span{color:var(--ouro)}
+  h1{font:800 clamp(34px,8.4vw,68px)/1.02 var(--display);letter-spacing:-.02em;margin:26px 0 14px;max-width:15ch;text-wrap:balance}
+  .hero p.lead{font-size:clamp(17px,3.6vw,21px);max-width:34ch;margin:0 0 22px;color:#fff;text-shadow:0 1px 12px rgba(42,39,102,.5)}
+  .cta{display:inline-block;font:700 17px var(--display);background:var(--ouro);color:#3a2300;padding:14px 24px;border-radius:999px;text-decoration:none;box-shadow:0 6px 0 #c9951a}
+  .cta:active{transform:translateY(3px);box-shadow:0 3px 0 #c9951a}
+  .cena{display:block;width:100%;max-width:960px;margin:-30px auto 0;height:auto;overflow:visible}
+  @media (max-width:600px){.cena{margin-top:4px}}
+  .luz{animation:pisca 2.6s ease-in-out infinite}
+  .luz:nth-child(2n){animation-delay:.7s}.luz:nth-child(3n){animation-delay:1.3s}.luz:nth-child(5n){animation-delay:1.9s}
+  @keyframes pisca{0%,100%{opacity:1}50%{opacity:.35}}
+  @media (prefers-reduced-motion:reduce){.luz{animation:none}html{scroll-behavior:auto}}
+
+  /* ---------- CONTEÚDO ---------- */
+  .miolo{max-width:640px;margin:0 auto;padding:0 18px 56px}
+  section{margin-top:44px}
+  h2{font:800 clamp(25px,5.6vw,34px)/1.1 var(--display);letter-spacing:-.015em;margin:0 0 6px}
+  .nota{color:var(--suave);margin:0 0 18px}
+
+  /* calendário */
+  .cal{background:#fff;border:2px solid var(--mar);border-radius:22px;padding:14px 12px 12px;box-shadow:6px 6px 0 var(--mar)}
+  .cal-top{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center;font:600 12px var(--corpo);color:var(--suave);margin-bottom:4px}
+  .cal-grade{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+  .dia{aspect-ratio:1/1.05;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;font:700 16px var(--display);position:relative}
+  .dia small{font:600 9.5px/1 var(--corpo);margin-top:3px;text-align:center}
+  .dia.vazio{visibility:hidden}
+  .dia.fds{background:#EEF4F2;color:#9BB0AB}
+  .dia.aberta{background:#DDF3E6;color:var(--pinheiro)}
+  .dia.fechada{background:var(--mar);color:#fff}
+  .dia.sem{background:var(--cereja);color:#fff}
+  .dia.volta{background:var(--ouro);color:#3a2300}
+  .legenda{display:flex;flex-wrap:wrap;gap:8px 16px;margin:14px 4px 2px;font-size:14px}
+  .legenda i{display:inline-block;width:13px;height:13px;border-radius:4px;margin-right:6px;vertical-align:-2px}
+
+  .avisos{margin:22px 0 0;padding:0;list-style:none;display:grid;gap:12px}
+  .avisos li{display:flex;gap:12px;align-items:flex-start}
+  .avisos .ic{flex:none;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-size:18px;background:#fff;border:2px solid var(--mar)}
+
+  /* formulário */
+  .escolha{display:block;position:relative;background:#fff;border:2px solid var(--linha);border-radius:18px;padding:16px 16px 16px 54px;margin:10px 0;cursor:pointer;transition:border-color .15s,background .15s}
+  .escolha input{position:absolute;left:16px;top:18px;width:24px;height:24px;margin:0;accent-color:var(--cereja)}
+  .escolha b{display:block;font:700 18px var(--display)}
+  .escolha small{color:var(--suave);font-size:15px}
+  .escolha.sel{border-color:var(--cereja);background:#FFF5F6}
+  .extra{padding:2px 4px 8px}
+  label.f{display:block;font-weight:600;font-size:15px;margin:14px 0 5px}
+  select,input[type=text],textarea{width:100%;font:inherit;padding:13px 14px;border:2px solid var(--linha);border-radius:14px;background:#fff;color:var(--tinta)}
+  select:focus,input[type=text]:focus,textarea:focus{border-color:var(--mar);outline:none}
+  textarea{min-height:76px;resize:vertical}
+  .duas{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .enviar{width:100%;font:800 19px var(--display);padding:16px;border:0;border-radius:999px;background:var(--cereja);color:#fff;margin-top:22px;box-shadow:0 6px 0 #8a0a20;cursor:pointer}
+  .enviar:active{transform:translateY(3px);box-shadow:0 3px 0 #8a0a20}
+  .enviar:disabled{opacity:.6;cursor:default}
+  .erro{color:#B3261E;font-weight:600;margin:14px 0 0}
+  .rodape-form{color:var(--suave);font-size:14px;text-align:center;margin:16px 0 0}
+
+  .pronto{text-align:center;padding:30px 10px}
+  .pronto .gr{font-size:56px;line-height:1}
+  .msg-card{background:#fff;border:2px solid var(--mar);border-radius:22px;padding:22px;box-shadow:6px 6px 0 var(--mar)}
+
+  footer{background:var(--mar);color:#cfe8e4;text-align:center;padding:26px 18px 30px;font-size:15px}
+  footer b{font-family:var(--display);color:#fff;font-size:18px}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-in">
+    <div class="marca">Obentō<span>Pet</span></div>
+    <h1>A cozinha vai de férias. As entregas continuam.</h1>
+    <p class="lead" id="lead">Conte como prefere receber a comida do seu pet no fim de ano.</p>
+    <a class="cta" href="#resposta">Responder agora</a>
+  </div>
+
+  <svg class="cena" viewBox="0 0 720 300" role="img" aria-label="Um cachorro e um gato de chapéu de Papai Noel, curtindo a praia ao lado de uma palmeira enfeitada com luzinhas de Natal">
+    <!-- sol e mar -->
+    <circle cx="360" cy="196" r="74" fill="#FFE08A" opacity=".9"/>
+    <rect x="-1500" y="196" width="3720" height="56" fill="#0B3C49"/>
+    <g stroke="#2B7A86" stroke-width="3" stroke-linecap="round" fill="none" opacity=".8">
+      <path d="M40 212 q14 -7 28 0 t28 0"/><path d="M180 226 q14 -7 28 0 t28 0"/><path d="M300 208 q14 -7 28 0 t28 0"/><path d="M470 224 q14 -7 28 0 t28 0"/><path d="M620 210 q14 -7 28 0 t28 0"/>
+    </g>
+    <path d="M300 200 h120 M318 208 h84 M334 216 h52" stroke="#FFE08A" stroke-width="3" stroke-linecap="round" opacity=".55"/>
+    <!-- areia -->
+    <path d="M-1500 246 L0 246 Q180 236 360 244 T720 240 L2220 240 V300 H-1500 Z" fill="#F3D9A8"/>
+    <path d="M-1500 272 L0 272 Q200 262 380 270 T720 266 L2220 266 V300 H-1500 Z" fill="#EBCB92"/>
+    <!-- toalha -->
+    <path d="M150 268 L500 268 L520 284 L130 284 Z" fill="#fff"/>
+    <path d="M150 268 L500 268 L504 272 L146 272 Z" fill="#C8102E"/>
+    <path d="M130 278 L520 278 L522 281 L128 281 Z" fill="#C8102E"/>
+
+    <!-- palmeira -->
+    <g>
+      <path d="M612 272 C606 214 620 164 600 112" stroke="#7A4B2A" stroke-width="15" stroke-linecap="round" fill="none"/>
+      <path d="M612 272 C606 214 620 164 600 112" stroke="#9a6238" stroke-width="4" stroke-linecap="round" fill="none" stroke-dasharray="3 12"/>
+      <g stroke="#1F7A4D" stroke-width="10" stroke-linecap="round" fill="none">
+        <path d="M600 112 C572 78 540 82 516 108"/>
+        <path d="M600 112 C588 70 612 44 646 52"/>
+        <path d="M600 112 C628 80 664 84 686 112"/>
+        <path d="M600 112 C566 104 548 128 548 150"/>
+        <path d="M600 112 C634 106 656 128 658 152"/>
+      </g>
+      <g stroke="#2FA06A" stroke-width="3" stroke-linecap="round" fill="none">
+        <path d="M600 112 C572 78 540 82 516 108"/><path d="M600 112 C588 70 612 44 646 52"/><path d="M600 112 C628 80 664 84 686 112"/>
+      </g>
+      <circle cx="598" cy="122" r="7" fill="#5b3a1e"/><circle cx="609" cy="124" r="7" fill="#6b4524"/>
+      <!-- luzes -->
+      <g>
+        <circle class="luz" cx="572" cy="86" r="5" fill="#FFC93C"/><circle class="luz" cx="548" cy="90" r="5" fill="#FF6B57"/><circle class="luz" cx="526" cy="102" r="5" fill="#fff"/>
+        <circle class="luz" cx="596" cy="66" r="5" fill="#fff"/><circle class="luz" cx="622" cy="52" r="5" fill="#FFC93C"/><circle class="luz" cx="642" cy="52" r="5" fill="#FF6B57"/>
+        <circle class="luz" cx="630" cy="86" r="5" fill="#FF6B57"/><circle class="luz" cx="656" cy="88" r="5" fill="#FFC93C"/><circle class="luz" cx="678" cy="104" r="5" fill="#fff"/>
+        <circle class="luz" cx="560" cy="124" r="5" fill="#FFC93C"/><circle class="luz" cx="650" cy="126" r="5" fill="#fff"/><circle class="luz" cx="552" cy="146" r="5" fill="#FF6B57"/>
+        <circle class="luz" cx="656" cy="148" r="5" fill="#FFC93C"/>
+      </g>
+      <!-- bolas -->
+      <g stroke="#ffe9a8" stroke-width="1.5"><line x1="548" y1="152" x2="548" y2="166"/><line x1="658" y1="154" x2="658" y2="170"/><line x1="522" y1="110" x2="522" y2="124"/><line x1="684" y1="114" x2="684" y2="128"/></g>
+      <circle cx="548" cy="173" r="8" fill="#C8102E"/><circle cx="658" cy="177" r="8" fill="#FFC93C"/><circle cx="522" cy="131" r="7" fill="#C8102E"/><circle cx="684" cy="135" r="7" fill="#fff"/>
+    </g>
+
+    <!-- presentes -->
+    <g>
+      <rect x="318" y="236" width="40" height="32" rx="3" fill="#C8102E"/><rect x="334" y="236" width="8" height="32" fill="#FFC93C"/><rect x="318" y="248" width="40" height="7" fill="#FFC93C"/>
+      <path d="M338 236 q-14 -14 -18 -4 q6 8 18 4 M338 236 q14 -14 18 -4 q-6 8 -18 4" fill="none" stroke="#FFC93C" stroke-width="4" stroke-linecap="round"/>
+      <rect x="364" y="250" width="26" height="18" rx="3" fill="#1F7A4D"/><rect x="374" y="250" width="6" height="18" fill="#fff"/>
+    </g>
+
+    <!-- cachorro -->
+    <g transform="translate(236,0)">
+      <path d="M-36 262 C-60 262 -66 232 -52 226" stroke="#D9A066" stroke-width="12" stroke-linecap="round" fill="none"/>
+      <ellipse cx="0" cy="226" rx="42" ry="40" fill="#D9A066"/>
+      <ellipse cx="0" cy="234" rx="24" ry="28" fill="#F2D3A6"/>
+      <rect x="-27" y="242" width="17" height="26" rx="8.5" fill="#D9A066"/><rect x="10" y="242" width="17" height="26" rx="8.5" fill="#D9A066"/>
+      <ellipse cx="-18.5" cy="267" rx="11" ry="6" fill="#F2D3A6"/><ellipse cx="18.5" cy="267" rx="11" ry="6" fill="#F2D3A6"/>
+      <ellipse cx="-33" cy="176" rx="11" ry="23" fill="#8A5A2B" transform="rotate(14 -33 176)"/>
+      <ellipse cx="33" cy="176" rx="11" ry="23" fill="#8A5A2B" transform="rotate(-14 33 176)"/>
+      <circle cx="0" cy="170" r="36" fill="#D9A066"/>
+      <ellipse cx="0" cy="184" rx="18" ry="14" fill="#F2D3A6"/>
+      <ellipse cx="0" cy="177" rx="6.5" ry="4.5" fill="#2B1B12"/>
+      <path d="M0 181 v5 M-8 188 q8 7 16 0" stroke="#2B1B12" stroke-width="2" stroke-linecap="round" fill="none"/>
+      <ellipse cx="3" cy="193" rx="4.5" ry="5.5" fill="#FF7A8A"/>
+      <circle cx="-13" cy="164" r="4" fill="#2B1B12"/><circle cx="13" cy="164" r="4" fill="#2B1B12"/>
+      <circle cx="-11.8" cy="162.6" r="1.3" fill="#fff"/><circle cx="14.2" cy="162.6" r="1.3" fill="#fff"/>
+      <path d="M-33 150 C-30 110 0 92 30 104 C22 112 30 130 33 150 Z" fill="#C8102E"/>
+      <rect x="-37" y="144" width="74" height="13" rx="6.5" fill="#fff"/>
+      <circle cx="34" cy="106" r="8" fill="#fff"/>
+    </g>
+
+    <!-- gato -->
+    <g transform="translate(442,0)">
+      <path d="M32 262 C76 262 82 212 58 204" stroke="#2E3440" stroke-width="12" stroke-linecap="round" fill="none"/>
+      <ellipse cx="0" cy="226" rx="36" ry="40" fill="#2E3440"/>
+      <ellipse cx="0" cy="236" rx="15" ry="24" fill="#F5F5F5"/>
+      <rect x="-24" y="242" width="15" height="26" rx="7.5" fill="#2E3440"/><rect x="9" y="242" width="15" height="26" rx="7.5" fill="#2E3440"/>
+      <ellipse cx="-16.5" cy="267" rx="10" ry="5.5" fill="#F5F5F5"/><ellipse cx="16.5" cy="267" rx="10" ry="5.5" fill="#F5F5F5"/>
+      <polygon points="-31,162 -27,128 -5,150" fill="#2E3440"/><polygon points="31,162 27,128 5,150" fill="#2E3440"/>
+      <polygon points="-26,154 -24,138 -13,150" fill="#F4A6B7"/><polygon points="26,154 24,138 13,150" fill="#F4A6B7"/>
+      <ellipse cx="0" cy="176" rx="35" ry="30" fill="#2E3440"/>
+      <!-- óculos -->
+      <rect x="-27" y="167" width="23" height="15" rx="6.5" fill="#111" stroke="#FFC93C" stroke-width="2.5"/>
+      <rect x="4" y="167" width="23" height="15" rx="6.5" fill="#111" stroke="#FFC93C" stroke-width="2.5"/>
+      <path d="M-4 172 h8" stroke="#FFC93C" stroke-width="2.5"/>
+      <path d="M-22 171 l7 0 M9 171 l7 0" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+      <path d="M-4 187 h8 l-4 5 z" fill="#F4A6B7"/>
+      <path d="M0 192 q-5 5 -9 2 M0 192 q5 5 9 2" stroke="#F5F5F5" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+      <g stroke="#F5F5F5" stroke-width="1.4" stroke-linecap="round" opacity=".85"><path d="M-20 186 l-22 -4 M-20 190 l-22 4 M20 186 l22 -4 M20 190 l22 4"/></g>
+      <!-- gorro -->
+      <path d="M-19 144 C-17 112 6 100 28 112 C20 118 22 130 19 144 Z" fill="#C8102E"/>
+      <rect x="-23" y="139" width="46" height="11" rx="5.5" fill="#fff"/>
+      <circle cx="29" cy="113" r="7.5" fill="#fff"/>
+    </g>
+  </svg>
+</header>
+
+<main class="miolo">
+
+  <div id="carregando" class="msg-card" style="margin-top:36px">Carregando…</div>
+  <div id="invalido" class="msg-card hide" style="margin-top:36px"><b>Esse link não está mais válido.</b><p style="margin:8px 0 0">Fale com a gente pelo WhatsApp que a gente resolve. 🐾</p></div>
+
+  <div id="conteudo" class="hide">
+
+    <section aria-labelledby="t-cal">
+      <h2 id="t-cal">O calendário das festas</h2>
+      <p class="nota">A cozinha fecha em 23/12 e volta em 4/1. Nesse meio-tempo, as entregas saem do estoque que a gente prepara antes.</p>
+      <div class="cal">
+        <div class="cal-top" aria-hidden="true"><span>seg</span><span>ter</span><span>qua</span><span>qui</span><span>sex</span><span>sáb</span><span>dom</span></div>
+        <div class="cal-grade" id="grade"></div>
+        <div class="legenda">
+          <span><i style="background:#DDF3E6;border:1px solid #9bd5b3"></i>Cozinha aberta</span>
+          <span><i style="background:var(--mar)"></i>Cozinha fechada, entregas normais</span>
+          <span><i style="background:var(--cereja)"></i>Sem entregas</span>
+          <span><i style="background:var(--ouro)"></i>Cozinha volta</span>
+        </div>
+      </div>
+
+      <ul class="avisos">
+        <li><span class="ic" aria-hidden="true">🍽️</span><span>Nos dias <b>24, 25 e 31 de dezembro</b> e <b>1º de janeiro</b> não saem entregas. As entregas desses dias são remanejadas.</span></li>
+        <li><span class="ic" aria-hidden="true">🔒</span><span>Por causa do volume de produção, <b>não conseguimos alterar dietas depois de 27 de novembro</b>.</span></li>
+      </ul>
+    </section>
+
+    <section id="resposta" aria-labelledby="t-resp">
+      <h2 id="t-resp">Como prefere receber a comida do(a) <span id="pet-t"></span>?</h2>
+      <p class="nota">É rapidinho: escolha uma opção e envie.</p>
+
+      <form id="form" novalidate>
+        <label class="escolha" id="o-manter"><input type="radio" name="entrega" value="manter"><b>Manter a entrega normal</b><small>Seguimos o calendário de sempre, com o remanejamento dos dias sem entrega.</small></label>
+        <label class="escolha" id="o-antecipar"><input type="radio" name="entrega" value="antecipar"><b>Antecipar a entrega</b><small>Você escolhe a nova data.</small></label>
+        <div id="box-data" class="extra hide">
+          <label class="f" for="data">Nova data de entrega</label>
+          <select id="data"></select>
+        </div>
+
+        <label class="escolha" id="o-end" style="margin-top:22px"><input type="checkbox" id="mudar"><b>Mudar o endereço de entrega</b><small id="endatual">Marque se vai receber em outro lugar.</small></label>
+        <div id="box-end" class="extra hide">
+          <label class="f" for="a-address">Rua e número</label><input type="text" id="a-address" autocomplete="street-address">
+          <div class="duas">
+            <div><label class="f" for="a-compl">Complemento</label><input type="text" id="a-compl"></div>
+            <div><label class="f" for="a-cep">CEP</label><input type="text" id="a-cep" inputmode="numeric" autocomplete="postal-code"></div>
+          </div>
+          <div class="duas">
+            <div><label class="f" for="a-bairro">Bairro</label><input type="text" id="a-bairro"></div>
+            <div><label class="f" for="a-cidade">Cidade</label><input type="text" id="a-cidade"></div>
+          </div>
+          <label class="f" for="a-ref">Ponto de referência (opcional)</label><input type="text" id="a-ref">
+        </div>
+
+        <label class="f" for="obs" style="margin-top:22px">Quer avisar mais alguma coisa? (opcional)</label>
+        <textarea id="obs" maxlength="300"></textarea>
+
+        <div id="err" class="erro hide" role="alert"></div>
+        <button type="submit" class="enviar" id="send">Enviar resposta</button>
+        <p class="rodape-form">Mudou de ideia? Abra este link de novo e altere a resposta até a nossa equipe processá-la.</p>
+      </form>
+
+      <div id="done" class="msg-card pronto hide">
+        <div class="gr" aria-hidden="true">🎄🐾</div>
+        <h2 style="margin-top:10px">Resposta enviada</h2>
+        <p id="done-msg" style="margin:0 0 6px"></p>
+        <p class="nota" style="margin:0">Para mudar algo, abra este link de novo.</p>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer><b>Boas festas da família ObentōPet</b><br>Um fim de ano gostoso para você e para o(a) <span id="pet-f">seu pet</span>.</footer>
+
+<script>
+const API = "https://jyrujdfwdwkwynolpbni.supabase.co/functions/v1/yearend-response";
+const token = new URLSearchParams(location.search).get("t") || "";
+const $ = (id) => document.getElementById(id);
+const fmt = (iso) => new Date(iso + "T12:00:00").toLocaleDateString("pt-BR", { weekday: "long", day: "2-digit", month: "long" });
+
+/* cena maior no celular */
+(function () { const svg = document.querySelector(".cena"); const mq = matchMedia("(max-width:600px)"); const set = () => svg.setAttribute("viewBox", mq.matches ? "160 60 540 240" : "0 0 720 300"); set(); mq.addEventListener("change", set); })();
+
+/* calendário: 21/12/2026 (segunda) até 10/01/2027 */
+(function () {
+  const g = $("grade"); const ini = new Date(2026, 11, 21, 12);
+  for (let i = 0; i < 21; i++) {
+    const d = new Date(ini); d.setDate(ini.getDate() + i);
+    const m = d.getMonth() + 1, n = d.getDate(), w = d.getDay();
+    const key = (m === 12 ? "d" : "j") + n;
+    const el = document.createElement("div"); el.className = "dia";
+    let cls = "", sub = "";
+    if (i > 14 + 0 && !(m === 1 && n === 4) && m === 1 && n > 4) { el.className = "dia vazio"; el.innerHTML = "&nbsp;"; g.appendChild(el); continue; }
+    if (m === 12 && n <= 22) cls = "aberta";
+    else if (m === 1 && n === 4) { cls = "volta"; sub = "volta"; }
+    else if ((m === 12 && (n === 24 || n === 25 || n === 31)) || (m === 1 && n === 1)) { cls = "sem"; sub = "sem entrega"; }
+    else cls = "fechada";
+    if ((w === 0 || w === 6) && cls !== "sem") cls = "fds";
+    el.className = "dia " + cls;
+    el.innerHTML = (m === 1 ? n + "/1" : n) + (sub ? "<small>" + sub + "</small>" : "");
+    el.setAttribute("aria-label", n + "/" + m + (sub ? ", " + sub : ""));
+    g.appendChild(el);
+  }
+})();
+
+async function call(body) {
+  const r = await fetch(API, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ token, ...body }) });
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(j.error || "erro");
+  return j;
+}
+function sync() {
+  const v = document.querySelector("input[name=entrega]:checked")?.value;
+  $("o-manter").classList.toggle("sel", v === "manter");
+  $("o-antecipar").classList.toggle("sel", v === "antecipar");
+  $("box-data").classList.toggle("hide", v !== "antecipar");
+  $("o-end").classList.toggle("sel", $("mudar").checked);
+  $("box-end").classList.toggle("hide", !$("mudar").checked);
+}
+document.querySelectorAll("input[name=entrega]").forEach((e) => e.addEventListener("change", sync));
+$("mudar").addEventListener("change", sync);
+
+(async () => {
+  try {
+    const i = await call({ action: "get" });
+    $("lead").textContent = i.tutor + ", conte como prefere receber a comida do(a) " + i.pet + " no fim de ano.";
+    $("pet-t").textContent = i.pet; $("pet-f").textContent = i.pet;
+    if (i.endereco_atual) $("endatual").textContent = "Endereço atual: " + i.endereco_atual;
+    $("data").innerHTML = '<option value="">Selecione a data…</option>' + i.dates.map((d) => `<option value="${d}">${fmt(d)}</option>`).join("");
+    if (i.entrega) document.querySelector(`input[name=entrega][value=${i.entrega}]`).checked = true;
+    if (i.data_antecipada) $("data").value = i.data_antecipada;
+    if (i.observacao) $("obs").value = i.observacao;
+    $("carregando").classList.add("hide"); $("conteudo").classList.remove("hide");
+    if (i.status === "tratado") { $("form").classList.add("hide"); $("done").classList.remove("hide"); $("done").querySelector("h2").textContent = "Sua resposta já foi processada"; $("done-msg").textContent = "Para qualquer ajuste, fale com a gente pelo WhatsApp."; }
+    else sync();
+  } catch (e) { $("carregando").classList.add("hide"); $("invalido").classList.remove("hide"); }
+})();
+
+$("form").addEventListener("submit", async (ev) => {
+  ev.preventDefault();
+  const err = (m) => { $("err").textContent = m; $("err").classList.remove("hide"); };
+  $("err").classList.add("hide");
+  const entrega = document.querySelector("input[name=entrega]:checked")?.value;
+  if (!entrega) return err("Escolha se prefere manter ou antecipar a entrega.");
+  if (entrega === "antecipar" && !$("data").value) return err("Escolha a nova data de entrega.");
+  const mudar = $("mudar").checked;
+  if (mudar && $("a-address").value.trim().length < 5) return err("Informe a rua e o número do novo endereço.");
+  $("send").disabled = true; $("send").textContent = "Enviando…";
+  try {
+    await call({ action: "submit", entrega, data_antecipada: $("data").value, mudar_endereco: mudar, observacao: $("obs").value,
+      endereco: { address: $("a-address").value, complemento: $("a-compl").value, cep: $("a-cep").value, bairro: $("a-bairro").value, cidade: $("a-cidade").value, referencia: $("a-ref").value } });
+    const p = [entrega === "manter" ? "Vamos manter a entrega normal." : "Entrega antecipada para " + fmt($("data").value) + "."];
+    if (mudar) p.push("Recebemos o novo endereço.");
+    $("done-msg").textContent = p.join(" ");
+    $("form").classList.add("hide"); $("done").classList.remove("hide"); $("done").scrollIntoView({ behavior: "smooth", block: "center" });
+  } catch (e) {
+    err(e.message === "data indisponível" ? "Essa data não está mais disponível. Escolha outra." : "Não foi possível enviar agora. Tente de novo em instantes.");
+    $("send").disabled = false; $("send").textContent = "Enviar resposta";
+  }
+});
+</script>
+</body>
+</html>
