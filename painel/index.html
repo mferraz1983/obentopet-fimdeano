@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Painel de fim de ano | ObentōPet</title>
+<link rel="icon" type="image/png" href="../petto-mascote.png">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+  :root{--mar:#0B3C49;--gelo:#F2FAF7;--tinta:#12313A;--suave:#587178;--cereja:#C8102E;--pinheiro:#1F7A4D;--ouro:#FFC93C;--linha:#D5E6E0;
+    --display:"Bricolage Grotesque",system-ui,sans-serif;--corpo:"Figtree",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--gelo);color:var(--tinta);font:16px/1.45 var(--corpo)}
+  .hide{display:none!important}
+  :focus-visible{outline:3px solid var(--ouro);outline-offset:2px}
+  header{background:var(--mar);color:#fff;padding:14px 18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  header img{height:44px;width:auto}
+  header h1{font:800 20px var(--display);margin:0;flex:1}
+  header button{background:transparent;color:#cfe8e4;border:1.5px solid #3d7480;border-radius:999px;padding:7px 14px;font:600 14px var(--corpo);cursor:pointer}
+  main{max-width:900px;margin:0 auto;padding:16px 14px 60px}
+
+  .login{max-width:360px;margin:60px auto;background:#fff;border:2px solid var(--mar);border-radius:20px;padding:22px;box-shadow:6px 6px 0 var(--mar)}
+  .login h2{font:800 22px var(--display);margin:0 0 4px}
+  .login p{color:var(--suave);margin:0 0 14px}
+  label.f{display:block;font-weight:600;font-size:14px;margin:12px 0 4px}
+  input[type=text],input[type=email],input[type=password],input[type=search]{width:100%;font:inherit;padding:12px 14px;border:2px solid var(--linha);border-radius:12px;background:#fff}
+  .btn{font:700 16px var(--display);border:0;border-radius:999px;padding:12px 20px;background:var(--cereja);color:#fff;cursor:pointer;box-shadow:0 4px 0 #8a0a20}
+  .btn:active{transform:translateY(2px);box-shadow:0 2px 0 #8a0a20}
+  .btn.full{width:100%;margin-top:18px}
+  .erro{color:#B3261E;font-weight:600;margin:10px 0 0;font-size:14px}
+
+  .nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:14px}
+  .num{background:#fff;border:2px solid var(--linha);border-radius:16px;padding:10px 14px}
+  .num b{display:block;font:800 28px/1.1 var(--display)}
+  .num span{color:var(--suave);font-size:14px}
+  .num.dest{border-color:var(--cereja)}
+  .barra{height:10px;background:#E1ECE8;border-radius:99px;overflow:hidden;margin:2px 0 16px}
+  .barra i{display:block;height:100%;background:var(--pinheiro);width:0;transition:width .4s}
+
+  .abas{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+  .aba{border:2px solid var(--linha);background:#fff;border-radius:999px;padding:8px 14px;font:600 15px var(--corpo);cursor:pointer;color:var(--tinta)}
+  .aba.on{background:var(--mar);border-color:var(--mar);color:#fff}
+  .tools{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+  .tools input{flex:1;min-width:180px}
+  .tools button{border:2px solid var(--mar);background:#fff;color:var(--mar);border-radius:12px;padding:10px 14px;font:700 14px var(--corpo);cursor:pointer}
+
+  h2.dia{font:800 19px var(--display);margin:20px 0 8px;display:flex;justify-content:space-between;align-items:baseline}
+  h2.dia small{font:600 14px var(--corpo);color:var(--suave)}
+  .item{background:#fff;border:2px solid var(--linha);border-radius:16px;padding:12px 14px;margin:8px 0;display:grid;gap:6px}
+  .item.feito{opacity:.55}
+  .topo{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+  .topo b{font:700 17px var(--display)}
+  .topo span{color:var(--suave);font-size:14px}
+  .tag{display:inline-block;font:700 12px var(--corpo);border-radius:99px;padding:3px 9px;margin-right:6px}
+  .t-ant{background:#FFE8EB;color:var(--cereja)}.t-man{background:#DDF3E6;color:var(--pinheiro)}.t-end{background:#FFF1C9;color:#7a5600}.t-sem{background:#E8EEF0;color:var(--suave)}
+  .end{background:#FFFAEB;border:1.5px dashed #E6C766;border-radius:12px;padding:8px 10px;font-size:14.5px}
+  .acoes{display:flex;gap:8px;flex-wrap:wrap}
+  .acoes a,.acoes button{font:700 14px var(--corpo);border-radius:10px;padding:8px 12px;text-decoration:none;cursor:pointer;border:2px solid var(--mar);background:#fff;color:var(--mar)}
+  .acoes .ok{background:var(--pinheiro);border-color:var(--pinheiro);color:#fff}
+  .vazio{text-align:center;color:var(--suave);padding:30px 10px}
+</style>
+</head>
+<body>
+<header>
+  <img src="../petto-mascote.png" alt="Petto">
+  <h1>Entregas de fim de ano</h1>
+  <button id="atualizar" class="hide">Atualizar</button>
+  <button id="sair" class="hide">Sair</button>
+</header>
+
+<main>
+  <form id="login" class="login">
+    <h2>Entrar</h2>
+    <p>Use o mesmo e-mail e senha do app de entregas.</p>
+    <label class="f" for="email">E-mail</label><input type="email" id="email" autocomplete="username" required>
+    <label class="f" for="senha">Senha</label><input type="password" id="senha" autocomplete="current-password" required>
+    <div id="lerro" class="erro hide" role="alert"></div>
+    <button class="btn full" type="submit">Entrar</button>
+  </form>
+
+  <div id="painel" class="hide">
+    <div class="nums" id="nums"></div>
+    <div class="barra" aria-hidden="true"><i id="prog"></i></div>
+    <div class="abas" id="abas"></div>
+    <div class="tools"><input type="search" id="busca" placeholder="Buscar por pet ou tutor"><button id="csv">Baixar planilha</button></div>
+    <div id="lista"></div>
+  </div>
+</main>
+
+<script>
+const sb = supabase.createClient("https://jyrujdfwdwkwynolpbni.supabase.co", "sb_publishable_WZZRIWvuRIIeOyHgsFmBAg_f00DPkcZ");
+const $ = (id) => document.getElementById(id);
+let rows = [], aba = "ant", usuario = "";
+const dBR = (iso) => iso ? new Date(iso + "T12:00:00").toLocaleDateString("pt-BR", { weekday: "long", day: "2-digit", month: "long" }) : "";
+const curto = (iso) => iso ? iso.slice(8, 10) + "/" + iso.slice(5, 7) : "";
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const wa = (ph) => { const d = String(ph || "").replace(/\D/g, ""); return d ? "https://wa.me/" + (d.startsWith("55") ? d : "55" + d) : ""; };
+
+async function entrar(ev) {
+  ev.preventDefault(); $("lerro").classList.add("hide");
+  const { error } = await sb.auth.signInWithPassword({ email: $("email").value.trim(), password: $("senha").value });
+  if (error) { $("lerro").textContent = "E-mail ou senha incorretos."; $("lerro").classList.remove("hide"); return; }
+  iniciar();
+}
+$("login").addEventListener("submit", entrar);
+$("sair").addEventListener("click", async () => { await sb.auth.signOut(); location.reload(); });
+$("atualizar").addEventListener("click", carregar);
+
+async function iniciar() {
+  const { data } = await sb.auth.getSession();
+  if (!data.session) return;
+  usuario = data.session.user.email || "";
+  $("login").classList.add("hide"); $("painel").classList.remove("hide");
+  $("atualizar").classList.remove("hide"); $("sair").classList.remove("hide");
+  await carregar(); setInterval(carregar, 60000);
+}
+
+async function carregar() {
+  const { data, error } = await sb.from("yearend_painel").select("*").order("tutor");
+  if (error) { $("lista").innerHTML = '<p class="vazio">Não consegui carregar as respostas. Saia e entre de novo; se continuar, avise o Claude.</p>'; return; }
+  rows = data; desenhar();
+}
+
+const respondeu = (r) => r.status === "respondido" || r.status === "tratado";
+function contas() {
+  const t = rows.length, r = rows.filter(respondeu);
+  return { t, r: r.length, ant: r.filter((x) => x.entrega === "antecipar").length, man: r.filter((x) => x.entrega === "manter").length,
+    end: r.filter((x) => x.mudar_endereco).length, sem: t - r.length, pend: r.filter((x) => x.status === "respondido").length };
+}
+function desenhar() {
+  const c = contas();
+  $("nums").innerHTML = [
+    [c.r + " de " + c.t, "responderam", ""], [c.ant, "querem antecipar", c.ant ? "dest" : ""], [c.man, "mantêm a entrega", ""],
+    [c.end, "mudam de endereço", c.end ? "dest" : ""], [c.pend, "ainda sem tratar", c.pend ? "dest" : ""],
+  ].map(([n, l, k]) => `<div class="num ${k}"><b>${n}</b><span>${l}</span></div>`).join("");
+  $("prog").style.width = (c.t ? Math.round(100 * c.r / c.t) : 0) + "%";
+  const abas = [["ant", "Antecipações (" + c.ant + ")"], ["end", "Endereços (" + c.end + ")"], ["sem", "Sem resposta (" + c.sem + ")"], ["todos", "Todos"]];
+  $("abas").innerHTML = abas.map(([k, l]) => `<button class="aba ${aba === k ? "on" : ""}" data-k="${k}">${l}</button>`).join("");
+  $("abas").querySelectorAll(".aba").forEach((b) => b.onclick = () => { aba = b.dataset.k; desenhar(); });
+  lista();
+}
+function card(r) {
+  const tags = [];
+  if (!respondeu(r)) tags.push('<span class="tag t-sem">Sem resposta</span>');
+  if (r.entrega === "antecipar") tags.push(`<span class="tag t-ant">Antecipar para ${curto(r.data_antecipada)}</span>`);
+  if (r.entrega === "manter") tags.push('<span class="tag t-man">Manter</span>');
+  if (r.mudar_endereco) tags.push('<span class="tag t-end">Endereço novo</span>');
+  const n = r.novo_endereco || {};
+  const end = r.mudar_endereco ? `<div class="end"><b>Novo endereço:</b> ${esc([n.address, n.complemento && !String(n.address||"").includes(n.complemento) ? n.complemento : "", n.bairro, n.cidade, n.cep].filter(Boolean).join(", "))}${n.referencia ? "<br>Referência: " + esc(n.referencia) : ""}</div>` : "";
+  const link = wa(r.phone);
+  const acoes = [];
+  if (link) acoes.push(`<a href="${link}" target="_blank" rel="noopener">WhatsApp</a>`);
+  if (r.status === "respondido") acoes.push(`<button class="ok" data-t="${r.token}" data-a="tratar">Marcar como tratado</button>`);
+  if (r.status === "tratado") acoes.push(`<button data-t="${r.token}" data-a="desfazer">Desfazer</button>`);
+  return `<div class="item ${r.status === "tratado" ? "feito" : ""}">
+    <div class="topo"><div><b>${esc(r.pet)}</b><br><span>${esc(r.tutor)}</span></div><div>${tags.join("")}</div></div>
+    <span>${esc(r.frequency || "")}${r.next_date ? " · próxima entrega " + curto(r.next_date) : ""}${r.units ? " · " + r.units + " un." : ""}</span>
+    ${r.observacao ? `<div>“${esc(r.observacao)}”</div>` : ""}${end}
+    ${acoes.length ? `<div class="acoes">${acoes.join("")}</div>` : ""}</div>`;
+}
+function lista() {
+  const q = $("busca").value.trim().toLowerCase();
+  let l = rows.filter((r) => !q || (r.pet + " " + r.tutor).toLowerCase().includes(q));
+  let html = "";
+  if (aba === "ant") {
+    l = l.filter((r) => r.entrega === "antecipar").sort((a, b) => String(a.data_antecipada).localeCompare(String(b.data_antecipada)));
+    const g = {}; l.forEach((r) => (g[r.data_antecipada] ||= []).push(r));
+    html = Object.keys(g).map((d) => `<h2 class="dia">${dBR(d)}<small>${g[d].length} entrega${g[d].length > 1 ? "s" : ""} para produzir antes</small></h2>${g[d].map(card).join("")}`).join("");
+  } else {
+    if (aba === "end") l = l.filter((r) => r.mudar_endereco);
+    if (aba === "sem") l = l.filter((r) => !respondeu(r));
+    html = l.map(card).join("");
+  }
+  $("lista").innerHTML = html || '<p class="vazio">Nada por aqui ainda.</p>';
+  $("lista").querySelectorAll("button[data-a]").forEach((b) => b.onclick = () => marcar(b.dataset.t, b.dataset.a));
+}
+$("busca").addEventListener("input", lista);
+
+async function marcar(token, acao) {
+  const upd = acao === "tratar" ? { status: "tratado", tratado_em: new Date().toISOString(), tratado_por: usuario } : { status: "respondido", tratado_em: null, tratado_por: null };
+  const { error } = await sb.from("yearend_responses").update(upd).eq("token", token);
+  if (error) { alert("Não foi possível salvar. Seu usuário pode não ter permissão de edição."); return; }
+  await carregar();
+}
+
+$("csv").addEventListener("click", () => {
+  const cab = ["Pet", "Tutor", "Telefone", "Status", "Entrega", "Data antecipada", "Mudar endereço", "Novo endereço", "Observação", "Respondido em"];
+  const lin = rows.map((r) => { const n = r.novo_endereco || {};
+    return [r.pet, r.tutor, r.phone, r.status, r.entrega, r.data_antecipada, r.mudar_endereco ? "sim" : "", [n.address, n.complemento, n.bairro, n.cidade, n.cep, n.referencia].filter(Boolean).join(", "), r.observacao, r.respondido_em]
+      .map((v) => '"' + String(v ?? "").replace(/"/g, '""') + '"').join(";"); });
+  const blob = new Blob(["﻿" + [cab.join(";"), ...lin].join("\n")], { type: "text/csv;charset=utf-8" });
+  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "entregas-fim-de-ano.csv"; a.click();
+});
+
+iniciar();
+</script>
+</body>
+</html>
