@@ -188,7 +188,7 @@
     </section>
 
     <section id="resposta" aria-labelledby="t-resp">
-      <h2 id="t-resp">Como prefere receber a comida do(a) <span id="pet-t"></span>?</h2>
+      <h2 id="t-resp">Como prefere receber a comida de <span id="pet-t"></span>?</h2>
       <p class="nota">É rapidinho: escolha uma opção e envie.</p>
 
       <form id="form" novalidate>
@@ -231,7 +231,7 @@
   </div>
 </main>
 
-<footer><b>Boas festas da família ObentōPet</b><span style="display:none"></span><br>Um fim de ano gostoso para você e para o(a) <span id="pet-f">seu pet</span>.</footer>
+<footer><b>Boas festas da família ObentōPet</b><span style="display:none"></span><br>Um fim de ano gostoso para você e para <span id="pet-f">seu pet</span>.</footer>
 
 <script>
 const API = "https://jyrujdfwdwkwynolpbni.supabase.co/functions/v1/yearend-response";
@@ -284,7 +284,7 @@ $("mudar").addEventListener("change", sync);
 (async () => {
   try {
     const i = await call({ action: "get" });
-    $("lead").textContent = i.tutor + ", conte como prefere receber a comida do(a) " + i.pet + " no fim de ano.";
+    $("lead").textContent = i.tutor + ", conte como prefere receber a comida de " + i.pet + " no fim de ano.";
     $("pet-t").textContent = i.pet; $("pet-f").textContent = i.pet;
     if (i.endereco_atual) $("endatual").textContent = "Endereço atual: " + i.endereco_atual;
     $("data").innerHTML = '<option value="">Selecione a data…</option>' + i.dates.map((d) => `<option value="${d}">${fmt(d)}</option>`).join("");
