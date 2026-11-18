@@ -120,7 +120,10 @@ async function iniciar() {
 async function carregar() {
   const { data, error } = await sb.from("yearend_painel").select("*").order("tutor");
   if (error) { $("lista").innerHTML = '<p class="vazio">Não consegui carregar as respostas. Saia e entre de novo; se continuar, avise o Claude.</p>'; return; }
-  rows = data; desenhar();
+  const g = {}; data.forEach((r) => (g[r.grupo || r.token] ||= []).push(r));
+  rows = Object.values(g).map((a) => { const m = a.find((x) => x.principal) || a[0];
+    return { ...m, pet: a.map((x) => x.pet).join(" + "), units: a.reduce((s, x) => s + (Number(x.units) || 0), 0) || m.units, qtd: a.length }; });
+  desenhar();
 }
 
 const respondeu = (r) => r.status === "respondido" || r.status === "tratado";
@@ -180,7 +183,9 @@ $("busca").addEventListener("input", lista);
 
 async function marcar(token, acao) {
   const upd = acao === "tratar" ? { status: "tratado", tratado_em: new Date().toISOString(), tratado_por: usuario } : { status: "respondido", tratado_em: null, tratado_por: null };
-  const { error } = await sb.from("yearend_responses").update(upd).eq("token", token);
+  const row = rows.find((x) => x.token === token);
+  const q = sb.from("yearend_responses").update(upd);
+  const { error } = await (row && row.grupo ? q.eq("grupo", row.grupo) : q.eq("token", token));
   if (error) { alert("Não foi possível salvar. Seu usuário pode não ter permissão de edição."); return; }
   await carregar();
 }
