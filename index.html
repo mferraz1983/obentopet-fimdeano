@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <title>Entregas de fim de ano | ObentōPet</title>
-<link rel="icon" type="image/png" href="petto-mascote.png">
+<link rel="icon" type="image/png" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -32,14 +32,15 @@
   :focus-visible{outline:3px solid var(--ouro);outline-offset:2px}
 
   /* ---------- HERO ---------- */
-  .hero{position:relative;overflow:hidden;color:#fff;background:linear-gradient(180deg,var(--noite) 0%,var(--amora) 46%,var(--poente) 80%,var(--ouro) 100%)}
-  .hero-in{max-width:960px;margin:0 auto;padding:28px 20px 0}
-  .marca{font:700 17px var(--display);letter-spacing:.2px;opacity:.95}
+  .hero{position:relative;overflow:hidden;color:#fff;background:linear-gradient(180deg,#071C24 0%,#0B3C49 55%,#11563F 100%)}
+  .hero-in{position:relative;max-width:960px;margin:0 auto;padding:28px 20px 0}
+  .marca{position:absolute;top:18px;right:20px;font:700 17px var(--display);letter-spacing:.2px;opacity:.95}
   .marca .marca-txt{display:none}
   .marca .marca-txt span{color:var(--ouro)}
-  .logo{display:block;height:92px;width:auto}
-  h1{font:800 clamp(34px,8.4vw,68px)/1.02 var(--display);letter-spacing:-.02em;margin:26px 0 14px;max-width:15ch;text-wrap:balance}
-  .hero p.lead{font-size:clamp(17px,3.6vw,21px);max-width:34ch;margin:0 0 22px;color:#fff;text-shadow:0 1px 12px rgba(42,39,102,.5)}
+  .logo{display:block;height:84px;width:auto}
+  @media (max-width:600px){.logo{height:62px}.hero h1{padding-right:70px;margin-top:34px}}
+  h1{font:800 clamp(34px,8.4vw,68px)/1.02 var(--display);letter-spacing:-.02em;margin:26px 0 14px;max-width:18ch;text-wrap:balance}
+  .hero p.lead{font-size:clamp(17px,3.6vw,21px);max-width:34ch;margin:0 0 22px;color:#fff;text-shadow:0 1px 12px rgba(7,28,36,.6)}
   .cta{display:inline-block;font:700 17px var(--display);background:var(--ouro);color:#3a2300;padding:14px 24px;border-radius:999px;text-decoration:none;box-shadow:0 6px 0 #c9951a}
   .cta:active{transform:translateY(3px);box-shadow:0 3px 0 #c9951a}
   .cena{display:block;width:100%;max-width:960px;margin:-30px auto 0;height:auto;overflow:visible}
@@ -47,7 +48,10 @@
   .luz{animation:pisca 2.6s ease-in-out infinite}
   .luz:nth-child(2n){animation-delay:.7s}.luz:nth-child(3n){animation-delay:1.3s}.luz:nth-child(5n){animation-delay:1.9s}
   @keyframes pisca{0%,100%{opacity:1}50%{opacity:.35}}
-  @media (prefers-reduced-motion:reduce){.luz{animation:none}html{scroll-behavior:auto}}
+  .neve circle{animation:cai 9s linear infinite;transform-box:fill-box}
+  .neve circle:nth-child(3n){animation-duration:12s;animation-delay:-4s}.neve circle:nth-child(3n+1){animation-duration:7s;animation-delay:-2s}.neve circle:nth-child(5n){animation-delay:-6s}
+  @keyframes cai{from{transform:translate(0,-30px)}to{transform:translate(14px,300px)}}
+  @media (prefers-reduced-motion:reduce){.luz,.neve circle{animation:none}html{scroll-behavior:auto}}
 
   /* ---------- CONTEÚDO ---------- */
   .miolo{max-width:640px;margin:0 auto;padding:0 18px 56px}
@@ -67,7 +71,7 @@
   .dia{aspect-ratio:1/1.05;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;font:700 16px var(--display);position:relative}
   .dia small{font:600 9.5px/1 var(--corpo);margin-top:3px;text-align:center}
   .dia.vazio{visibility:hidden}
-  .dia.fds{background:#EEF4F2;color:#9BB0AB}
+  .dia.fds{background:repeating-linear-gradient(135deg,#DCE3E1 0 6px,#EDF1F0 6px 12px);color:#5F7479;border:1.5px dashed #AFC0C0}
   .dia.aberta{background:#DDF3E6;color:var(--pinheiro)}
   .dia.fechada{background:var(--mar);color:#fff}
   .dia.sem{background:var(--cereja);color:#fff}
@@ -110,69 +114,43 @@
 <header class="hero">
   <div class="hero-in">
     <div class="marca"><img class="logo" src="logo-branco.png" alt="ObentōPet" onerror="this.style.display='none';document.getElementById('marca-txt').style.display='block'"><span id="marca-txt" class="marca-txt">Obentō<span>Pet</span></span></div>
-    <h1>A cozinha vai de férias. As entregas continuam.</h1>
+    <h1>A cozinha entra de férias, mas as entregas continuam.</h1>
     <p class="lead" id="lead">Conte como prefere receber a comida do seu pet no fim de ano.</p>
     <a class="cta" href="#resposta">Responder agora</a>
   </div>
 
-  <svg class="cena" viewBox="0 0 720 300" role="img" aria-label="Petto, o mascote da ObentōPet, de gorro de Papai Noel na praia, ao lado de presentes e de uma palmeira enfeitada com luzinhas de Natal">
-    <!-- sol e mar -->
-    <circle cx="360" cy="196" r="74" fill="#FFE08A" opacity=".9"/>
-    <rect x="-1500" y="196" width="3720" height="56" fill="#0B3C49"/>
-    <g stroke="#2B7A86" stroke-width="3" stroke-linecap="round" fill="none" opacity=".8">
-      <path d="M40 212 q14 -7 28 0 t28 0"/><path d="M180 226 q14 -7 28 0 t28 0"/><path d="M300 208 q14 -7 28 0 t28 0"/><path d="M470 224 q14 -7 28 0 t28 0"/><path d="M620 210 q14 -7 28 0 t28 0"/>
-    </g>
-    <path d="M300 200 h120 M318 208 h84 M334 216 h52" stroke="#FFE08A" stroke-width="3" stroke-linecap="round" opacity=".55"/>
-    <!-- areia -->
-    <path d="M-1500 246 L0 246 Q180 236 360 244 T720 240 L2220 240 V300 H-1500 Z" fill="#F3D9A8"/>
-    <path d="M-1500 272 L0 272 Q200 262 380 270 T720 266 L2220 266 V300 H-1500 Z" fill="#EBCB92"/>
-    <!-- toalha -->
-    <path d="M150 268 L500 268 L520 284 L130 284 Z" fill="#fff"/>
-    <path d="M150 268 L500 268 L504 272 L146 272 Z" fill="#C8102E"/>
-    <path d="M130 278 L520 278 L522 281 L128 281 Z" fill="#C8102E"/>
-
-    <!-- palmeira -->
-    <g>
-      <path d="M612 272 C606 214 620 164 600 112" stroke="#7A4B2A" stroke-width="15" stroke-linecap="round" fill="none"/>
-      <path d="M612 272 C606 214 620 164 600 112" stroke="#9a6238" stroke-width="4" stroke-linecap="round" fill="none" stroke-dasharray="3 12"/>
-      <g stroke="#1F7A4D" stroke-width="10" stroke-linecap="round" fill="none">
-        <path d="M600 112 C572 78 540 82 516 108"/>
-        <path d="M600 112 C588 70 612 44 646 52"/>
-        <path d="M600 112 C628 80 664 84 686 112"/>
-        <path d="M600 112 C566 104 548 128 548 150"/>
-        <path d="M600 112 C634 106 656 128 658 152"/>
-      </g>
-      <g stroke="#2FA06A" stroke-width="3" stroke-linecap="round" fill="none">
-        <path d="M600 112 C572 78 540 82 516 108"/><path d="M600 112 C588 70 612 44 646 52"/><path d="M600 112 C628 80 664 84 686 112"/>
-      </g>
-      <circle cx="598" cy="122" r="7" fill="#5b3a1e"/><circle cx="609" cy="124" r="7" fill="#6b4524"/>
-      <!-- luzes -->
-      <g>
-        <circle class="luz" cx="572" cy="86" r="5" fill="#FFC93C"/><circle class="luz" cx="548" cy="90" r="5" fill="#FF6B57"/><circle class="luz" cx="526" cy="102" r="5" fill="#fff"/>
-        <circle class="luz" cx="596" cy="66" r="5" fill="#fff"/><circle class="luz" cx="622" cy="52" r="5" fill="#FFC93C"/><circle class="luz" cx="642" cy="52" r="5" fill="#FF6B57"/>
-        <circle class="luz" cx="630" cy="86" r="5" fill="#FF6B57"/><circle class="luz" cx="656" cy="88" r="5" fill="#FFC93C"/><circle class="luz" cx="678" cy="104" r="5" fill="#fff"/>
-        <circle class="luz" cx="560" cy="124" r="5" fill="#FFC93C"/><circle class="luz" cx="650" cy="126" r="5" fill="#fff"/><circle class="luz" cx="552" cy="146" r="5" fill="#FF6B57"/>
-        <circle class="luz" cx="656" cy="148" r="5" fill="#FFC93C"/>
-      </g>
-      <!-- bolas -->
-      <g stroke="#ffe9a8" stroke-width="1.5"><line x1="548" y1="152" x2="548" y2="166"/><line x1="658" y1="154" x2="658" y2="170"/><line x1="522" y1="110" x2="522" y2="124"/><line x1="684" y1="114" x2="684" y2="128"/></g>
-      <circle cx="548" cy="173" r="8" fill="#C8102E"/><circle cx="658" cy="177" r="8" fill="#FFC93C"/><circle cx="522" cy="131" r="7" fill="#C8102E"/><circle cx="684" cy="135" r="7" fill="#fff"/>
-    </g>
-
+  <svg class="cena" viewBox="0 0 720 300" role="img" aria-label="Petto, o mascote da ObentōPet, de gorro e cachecol de Natal, acenando numa noite de neve entre pinheiros enfeitados e presentes">
+    <defs>
+      <radialGradient id="brilho" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#FFD76A" stop-opacity=".55"/><stop offset=".55" stop-color="#FFB347" stop-opacity=".16"/><stop offset="1" stop-color="#FFB347" stop-opacity="0"/></radialGradient>
+    </defs>
+    <!-- céu -->
+    <g><circle class="luz" cx="92" cy="47" r="1.8" fill="#fff"/><circle class="luz" cx="33" cy="17" r="1" fill="#fff"/><circle class="luz" cx="560" cy="23" r="1.8" fill="#fff"/><circle class="luz" cx="83" cy="50" r="1.8" fill="#fff"/><circle class="luz" cx="6" cy="13" r="1" fill="#fff"/><circle class="luz" cx="608" cy="52" r="1" fill="#fff"/><circle class="luz" cx="629" cy="36" r="1.3" fill="#fff"/><circle class="luz" cx="596" cy="50" r="1.3" fill="#fff"/><circle class="luz" cx="105" cy="18" r="1.3" fill="#fff"/><circle class="luz" cx="457" cy="65" r="1.3" fill="#fff"/><circle class="luz" cx="299" cy="14" r="1" fill="#fff"/><circle class="luz" cx="84" cy="99" r="1.3" fill="#fff"/><circle class="luz" cx="738" cy="37" r="1.3" fill="#fff"/><circle class="luz" cx="688" cy="24" r="1.8" fill="#fff"/><circle class="luz" cx="3" cy="30" r="1.8" fill="#fff"/><circle class="luz" cx="350" cy="22" r="1.8" fill="#fff"/><circle class="luz" cx="536" cy="7" r="1.8" fill="#fff"/><circle class="luz" cx="285" cy="86" r="1" fill="#fff"/><circle class="luz" cx="692" cy="112" r="1.3" fill="#fff"/><circle class="luz" cx="510" cy="50" r="1" fill="#fff"/><circle class="luz" cx="344" cy="102" r="1" fill="#fff"/><circle class="luz" cx="525" cy="73" r="1.8" fill="#fff"/><circle class="luz" cx="317" cy="85" r="1" fill="#fff"/><circle class="luz" cx="607" cy="107" r="1" fill="#fff"/><circle class="luz" cx="225" cy="108" r="1.3" fill="#fff"/><circle class="luz" cx="737" cy="106" r="1" fill="#fff"/></g>
+    <path transform="translate(-120,-6)" d="M646 40 a26 26 0 1 0 24 38 a21 21 0 1 1 -24 -38 z" fill="#FFF3C4"/>
+    <!-- brilho atrás do Petto -->
+    <ellipse cx="400" cy="160" rx="210" ry="170" fill="url(#brilho)"/>
+    <!-- pinheiros -->
+    <g transform="translate(188,262) scale(1.15)"><rect x="-9" y="-14" width="18" height="22" fill="#4a2e1b"/><path d="M-78 -14 L0 -76 L78 -14 Q0 -4 -78 -14 Z" fill="#0E4F37"/><path d="M-43 -40 L0 -76 L43 -40 Q0 -32 -43 -40 Z" fill="#F2FAF7" opacity=".9"/><path d="M-64 -52 L0 -114 L64 -52 Q0 -42 -64 -52 Z" fill="#13633F"/><path d="M-35 -78 L0 -114 L35 -78 Q0 -70 -35 -78 Z" fill="#F2FAF7" opacity=".9"/><path d="M-50 -88 L0 -150 L50 -88 Q0 -78 -50 -88 Z" fill="#187A4B"/><path d="M-28 -114 L0 -150 L28 -114 Q0 -106 -28 -114 Z" fill="#F2FAF7" opacity=".9"/><path d="M-36 -120 L0 -182 L36 -120 Q0 -110 -36 -120 Z" fill="#1F8F58"/><path d="M-20 -146 L0 -182 L20 -146 Q0 -138 -20 -146 Z" fill="#F2FAF7" opacity=".9"/><path d="M0 -190 l5 12 13 1 -10 9 3 13 -11 -7 -11 7 3 -13 -10 -9 13 -1 z" fill="#FFC93C"/><circle class="luz" cx="-30" cy="-34" r="4.2" fill="#FFC93C"/><circle class="luz" cx="28" cy="-40" r="4.2" fill="#FF6B57"/><circle class="luz" cx="-8" cy="-62" r="4.2" fill="#fff"/><circle class="luz" cx="-44" cy="-70" r="4.2" fill="#FFC93C"/><circle class="luz" cx="40" cy="-78" r="4.2" fill="#FF6B57"/><circle class="luz" cx="0" cy="-100" r="4.2" fill="#fff"/><circle class="luz" cx="-24" cy="-106" r="4.2" fill="#FFC93C"/><circle class="luz" cx="22" cy="-116" r="4.2" fill="#FF6B57"/><circle class="luz" cx="-10" cy="-136" r="4.2" fill="#fff"/><circle class="luz" cx="12" cy="-150" r="4.2" fill="#FFC93C"/></g>
+    <g transform="translate(100,256) scale(0.7)"><rect x="-9" y="-14" width="18" height="22" fill="#4a2e1b"/><path d="M-78 -14 L0 -76 L78 -14 Q0 -4 -78 -14 Z" fill="#0E4F37"/><path d="M-43 -40 L0 -76 L43 -40 Q0 -32 -43 -40 Z" fill="#F2FAF7" opacity=".9"/><path d="M-64 -52 L0 -114 L64 -52 Q0 -42 -64 -52 Z" fill="#13633F"/><path d="M-35 -78 L0 -114 L35 -78 Q0 -70 -35 -78 Z" fill="#F2FAF7" opacity=".9"/><path d="M-50 -88 L0 -150 L50 -88 Q0 -78 -50 -88 Z" fill="#187A4B"/><path d="M-28 -114 L0 -150 L28 -114 Q0 -106 -28 -114 Z" fill="#F2FAF7" opacity=".9"/><path d="M-36 -120 L0 -182 L36 -120 Q0 -110 -36 -120 Z" fill="#1F8F58"/><path d="M-20 -146 L0 -182 L20 -146 Q0 -138 -20 -146 Z" fill="#F2FAF7" opacity=".9"/><path d="M0 -190 l5 12 13 1 -10 9 3 13 -11 -7 -11 7 3 -13 -10 -9 13 -1 z" fill="#FFC93C"/><circle class="luz" cx="-30" cy="-34" r="4.2" fill="#FFC93C"/><circle class="luz" cx="28" cy="-40" r="4.2" fill="#FF6B57"/><circle class="luz" cx="-8" cy="-62" r="4.2" fill="#fff"/><circle class="luz" cx="-44" cy="-70" r="4.2" fill="#FFC93C"/><circle class="luz" cx="40" cy="-78" r="4.2" fill="#FF6B57"/><circle class="luz" cx="0" cy="-100" r="4.2" fill="#fff"/><circle class="luz" cx="-24" cy="-106" r="4.2" fill="#FFC93C"/><circle class="luz" cx="22" cy="-116" r="4.2" fill="#FF6B57"/><circle class="luz" cx="-10" cy="-136" r="4.2" fill="#fff"/><circle class="luz" cx="12" cy="-150" r="4.2" fill="#FFC93C"/></g>
+    <g transform="translate(626,262) scale(1.1)"><rect x="-9" y="-14" width="18" height="22" fill="#4a2e1b"/><path d="M-78 -14 L0 -76 L78 -14 Q0 -4 -78 -14 Z" fill="#0E4F37"/><path d="M-43 -40 L0 -76 L43 -40 Q0 -32 -43 -40 Z" fill="#F2FAF7" opacity=".9"/><path d="M-64 -52 L0 -114 L64 -52 Q0 -42 -64 -52 Z" fill="#13633F"/><path d="M-35 -78 L0 -114 L35 -78 Q0 -70 -35 -78 Z" fill="#F2FAF7" opacity=".9"/><path d="M-50 -88 L0 -150 L50 -88 Q0 -78 -50 -88 Z" fill="#187A4B"/><path d="M-28 -114 L0 -150 L28 -114 Q0 -106 -28 -114 Z" fill="#F2FAF7" opacity=".9"/><path d="M-36 -120 L0 -182 L36 -120 Q0 -110 -36 -120 Z" fill="#1F8F58"/><path d="M-20 -146 L0 -182 L20 -146 Q0 -138 -20 -146 Z" fill="#F2FAF7" opacity=".9"/><path d="M0 -190 l5 12 13 1 -10 9 3 13 -11 -7 -11 7 3 -13 -10 -9 13 -1 z" fill="#FFC93C"/><circle class="luz" cx="-30" cy="-34" r="4.2" fill="#FFC93C"/><circle class="luz" cx="28" cy="-40" r="4.2" fill="#FF6B57"/><circle class="luz" cx="-8" cy="-62" r="4.2" fill="#fff"/><circle class="luz" cx="-44" cy="-70" r="4.2" fill="#FFC93C"/><circle class="luz" cx="40" cy="-78" r="4.2" fill="#FF6B57"/><circle class="luz" cx="0" cy="-100" r="4.2" fill="#fff"/><circle class="luz" cx="-24" cy="-106" r="4.2" fill="#FFC93C"/><circle class="luz" cx="22" cy="-116" r="4.2" fill="#FF6B57"/><circle class="luz" cx="-10" cy="-136" r="4.2" fill="#fff"/><circle class="luz" cx="12" cy="-150" r="4.2" fill="#FFC93C"/></g>
+    <g transform="translate(700,254) scale(0.62)"><rect x="-9" y="-14" width="18" height="22" fill="#4a2e1b"/><path d="M-78 -14 L0 -76 L78 -14 Q0 -4 -78 -14 Z" fill="#0E4F37"/><path d="M-43 -40 L0 -76 L43 -40 Q0 -32 -43 -40 Z" fill="#F2FAF7" opacity=".9"/><path d="M-64 -52 L0 -114 L64 -52 Q0 -42 -64 -52 Z" fill="#13633F"/><path d="M-35 -78 L0 -114 L35 -78 Q0 -70 -35 -78 Z" fill="#F2FAF7" opacity=".9"/><path d="M-50 -88 L0 -150 L50 -88 Q0 -78 -50 -88 Z" fill="#187A4B"/><path d="M-28 -114 L0 -150 L28 -114 Q0 -106 -28 -114 Z" fill="#F2FAF7" opacity=".9"/><path d="M-36 -120 L0 -182 L36 -120 Q0 -110 -36 -120 Z" fill="#1F8F58"/><path d="M-20 -146 L0 -182 L20 -146 Q0 -138 -20 -146 Z" fill="#F2FAF7" opacity=".9"/><path d="M0 -190 l5 12 13 1 -10 9 3 13 -11 -7 -11 7 3 -13 -10 -9 13 -1 z" fill="#FFC93C"/><circle class="luz" cx="-30" cy="-34" r="4.2" fill="#FFC93C"/><circle class="luz" cx="28" cy="-40" r="4.2" fill="#FF6B57"/><circle class="luz" cx="-8" cy="-62" r="4.2" fill="#fff"/><circle class="luz" cx="-44" cy="-70" r="4.2" fill="#FFC93C"/><circle class="luz" cx="40" cy="-78" r="4.2" fill="#FF6B57"/><circle class="luz" cx="0" cy="-100" r="4.2" fill="#fff"/><circle class="luz" cx="-24" cy="-106" r="4.2" fill="#FFC93C"/><circle class="luz" cx="22" cy="-116" r="4.2" fill="#FF6B57"/><circle class="luz" cx="-10" cy="-136" r="4.2" fill="#fff"/><circle class="luz" cx="12" cy="-150" r="4.2" fill="#FFC93C"/></g>
+    <!-- neve no chão -->
+    <path d="M-1500 252 L0 252 Q150 238 300 248 T600 246 T900 240 L2220 240 V320 H-1500 Z" fill="#F2FAF7"/>
+    <path d="M-1500 252 L0 252 Q150 238 300 248 T600 246 T900 240" fill="none" stroke="#fff" stroke-width="3" opacity=".8"/>
+    <path d="M-1500 280 L0 280 Q220 268 420 276 T900 272 L2220 272 V320 H-1500 Z" fill="#E2F1EC"/>
+    <!-- sombra do Petto -->
+    <ellipse cx="402" cy="268" rx="100" ry="9" fill="#12313A" opacity=".16"/>
     <!-- presentes -->
-    <g transform="translate(70,0)">
-      <rect x="318" y="236" width="40" height="32" rx="3" fill="#C8102E"/><rect x="334" y="236" width="8" height="32" fill="#FFC93C"/><rect x="318" y="248" width="40" height="7" fill="#FFC93C"/>
-      <path d="M338 236 q-14 -14 -18 -4 q6 8 18 4 M338 236 q14 -14 18 -4 q-6 8 -18 4" fill="none" stroke="#FFC93C" stroke-width="4" stroke-linecap="round"/>
-      <rect x="364" y="250" width="26" height="18" rx="3" fill="#1F7A4D"/><rect x="374" y="250" width="6" height="18" fill="#fff"/>
-    </g>
-
-    <!-- Petto, mascote da ObentōPet -->
-    <image href="petto-mascote.png" x="238" y="84" width="125" height="190" preserveAspectRatio="xMidYMax meet"/>
     <g>
-      <path d="M273 92 C274 58 300 44 324 58 C314 64 317 80 317 92 Z" fill="#C8102E"/>
-      <rect x="268" y="87" width="54" height="12" rx="6" fill="#fff"/>
-      <circle cx="325" cy="59" r="8" fill="#fff"/>
+      <rect x="262" y="246" width="40" height="30" rx="3" fill="#C8102E"/><rect x="278" y="246" width="8" height="30" fill="#FFC93C"/><rect x="262" y="257" width="40" height="6" fill="#FFC93C"/>
+      <path d="M282 246 q-13 -13 -17 -4 q6 8 17 4 M282 246 q13 -13 17 -4 q-6 8 -17 4" fill="none" stroke="#FFC93C" stroke-width="3.5" stroke-linecap="round"/>
+      <rect x="236" y="259" width="26" height="17" rx="3" fill="#1F7A4D"/><rect x="246" y="259" width="6" height="17" fill="#fff"/>
+      <rect x="508" y="250" width="34" height="26" rx="3" fill="#fff"/><rect x="521" y="250" width="8" height="26" fill="#C8102E"/><rect x="508" y="260" width="34" height="6" fill="#C8102E"/>
+      <path d="M525 250 q-11 -11 -15 -3 q5 7 15 3 M525 250 q11 -11 15 -3 q-5 7 -15 3" fill="none" stroke="#C8102E" stroke-width="3.2" stroke-linecap="round"/>
     </g>
+    <!-- Petto, mascote da ObentōPet -->
+    <image href="petto-natal.webp" x="318" y="26" width="168" height="240" preserveAspectRatio="xMidYMax meet"/>
+    <!-- neve caindo -->
+    <g class="neve" aria-hidden="true"><circle cx="291" cy="57" r="3.2" fill="#fff" opacity="0.9"/><circle cx="9" cy="17" r="1.6" fill="#fff" opacity="0.7"/><circle cx="556" cy="9" r="2" fill="#fff" opacity="0.5"/><circle cx="48" cy="202" r="3.2" fill="#fff" opacity="0.5"/><circle cx="206" cy="26" r="3.2" fill="#fff" opacity="0.5"/><circle cx="539" cy="43" r="2" fill="#fff" opacity="0.9"/><circle cx="602" cy="278" r="1.6" fill="#fff" opacity="0.9"/><circle cx="559" cy="183" r="1.6" fill="#fff" opacity="0.5"/><circle cx="7" cy="265" r="2" fill="#fff" opacity="0.7"/><circle cx="389" cy="53" r="1.6" fill="#fff" opacity="0.9"/><circle cx="275" cy="266" r="2" fill="#fff" opacity="0.5"/><circle cx="555" cy="272" r="2" fill="#fff" opacity="0.7"/><circle cx="59" cy="260" r="1.6" fill="#fff" opacity="0.9"/><circle cx="21" cy="85" r="3.2" fill="#fff" opacity="0.9"/><circle cx="504" cy="198" r="2.6" fill="#fff" opacity="0.7"/><circle cx="559" cy="212" r="2.6" fill="#fff" opacity="0.7"/><circle cx="214" cy="72" r="2" fill="#fff" opacity="0.5"/><circle cx="548" cy="133" r="3.2" fill="#fff" opacity="0.7"/><circle cx="706" cy="209" r="2.6" fill="#fff" opacity="0.9"/><circle cx="34" cy="40" r="3.2" fill="#fff" opacity="0.5"/><circle cx="735" cy="155" r="2" fill="#fff" opacity="0.7"/><circle cx="391" cy="0" r="1.6" fill="#fff" opacity="0.9"/><circle cx="546" cy="140" r="2.6" fill="#fff" opacity="0.9"/><circle cx="318" cy="234" r="3.2" fill="#fff" opacity="0.5"/><circle cx="55" cy="118" r="3.2" fill="#fff" opacity="0.9"/><circle cx="640" cy="13" r="1.6" fill="#fff" opacity="0.9"/><circle cx="678" cy="138" r="3.2" fill="#fff" opacity="0.7"/><circle cx="693" cy="177" r="2.6" fill="#fff" opacity="0.5"/><circle cx="432" cy="161" r="2" fill="#fff" opacity="0.9"/><circle cx="79" cy="232" r="1.6" fill="#fff" opacity="0.5"/><circle cx="746" cy="127" r="2" fill="#fff" opacity="0.9"/><circle cx="213" cy="183" r="3.2" fill="#fff" opacity="0.7"/><circle cx="42" cy="65" r="3.2" fill="#fff" opacity="0.7"/><circle cx="522" cy="122" r="2" fill="#fff" opacity="0.7"/><circle cx="523" cy="122" r="3.2" fill="#fff" opacity="0.7"/><circle cx="659" cy="174" r="2" fill="#fff" opacity="0.5"/><circle cx="44" cy="70" r="2" fill="#fff" opacity="0.5"/><circle cx="634" cy="99" r="1.6" fill="#fff" opacity="0.7"/><circle cx="563" cy="73" r="2.6" fill="#fff" opacity="0.7"/><circle cx="-36" cy="54" r="3.2" fill="#fff" opacity="0.9"/><circle cx="338" cy="269" r="2.6" fill="#fff" opacity="0.5"/><circle cx="667" cy="243" r="1.6" fill="#fff" opacity="0.7"/><circle cx="758" cy="266" r="3.2" fill="#fff" opacity="0.7"/><circle cx="368" cy="181" r="1.6" fill="#fff" opacity="0.7"/><circle cx="609" cy="185" r="1.6" fill="#fff" opacity="0.5"/><circle cx="28" cy="86" r="3.2" fill="#fff" opacity="0.5"/></g>
   </svg>
 </header>
 
@@ -184,7 +162,7 @@
   <div id="conteudo" class="hide">
 
     <aside class="selo" aria-label="Mensagem oficial">
-      <img src="petto-mascote.png" alt="Petto, mascote da ObentōPet" width="44" height="67">
+      <img src="petto-natal.webp" alt="Petto, mascote da ObentōPet" width="48" height="67">
       <p><b>Mensagem oficial da ObentōPet.</b> Quem enviou este link foi o Petto, nosso assistente virtual, e só tutores cadastrados o recebem. Aqui a gente <b>nunca pede senha, CPF ou dados de cartão</b>. Na dúvida, confira em <a href="https://obentopet.com.br" rel="noopener">obentopet.com.br</a> ou no Instagram <a href="https://instagram.com/obentopet" rel="noopener">@obentopet</a>.</p>
     </aside>
 
@@ -198,6 +176,7 @@
           <span><i style="background:#DDF3E6;border:1px solid #9bd5b3"></i>Cozinha aberta</span>
           <span><i style="background:var(--mar)"></i>Cozinha fechada, entregas normais</span>
           <span><i style="background:var(--cereja)"></i>Sem entregas</span>
+          <span><i style="background:repeating-linear-gradient(135deg,#DCE3E1 0 3px,#EDF1F0 3px 6px);border:1px dashed #AFC0C0"></i>Fim de semana, empresa fechada</span>
           <span><i style="background:var(--ouro)"></i>Cozinha volta</span>
         </div>
       </div>
@@ -261,7 +240,7 @@ const $ = (id) => document.getElementById(id);
 const fmt = (iso) => new Date(iso + "T12:00:00").toLocaleDateString("pt-BR", { weekday: "long", day: "2-digit", month: "long" });
 
 /* cena maior no celular */
-(function () { const svg = document.querySelector(".cena"); const mq = matchMedia("(max-width:600px)"); const set = () => svg.setAttribute("viewBox", mq.matches ? "170 30 540 270" : "0 0 720 300"); set(); mq.addEventListener("change", set); })();
+(function () { const svg = document.querySelector(".cena"); const mq = matchMedia("(max-width:600px)"); const set = () => svg.setAttribute("viewBox", mq.matches ? "150 24 560 276" : "0 0 720 300"); set(); mq.addEventListener("change", set); })();
 
 /* calendário: 21/12/2026 (segunda) até 10/01/2027 */
 (function () {
@@ -277,7 +256,7 @@ const fmt = (iso) => new Date(iso + "T12:00:00").toLocaleDateString("pt-BR", { w
     else if (m === 1 && n === 4) { cls = "volta"; sub = "volta"; }
     else if ((m === 12 && (n === 24 || n === 25 || n === 31)) || (m === 1 && n === 1)) { cls = "sem"; sub = "sem entrega"; }
     else cls = "fechada";
-    if ((w === 0 || w === 6) && cls !== "sem") cls = "fds";
+    if ((w === 0 || w === 6) && cls !== "sem") { cls = "fds"; sub = "fechado"; }
     el.className = "dia " + cls;
     el.innerHTML = (m === 1 ? n + "/1" : n) + (sub ? "<small>" + sub + "</small>" : "");
     el.setAttribute("aria-label", n + "/" + m + (sub ? ", " + sub : ""));
